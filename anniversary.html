@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1st Talk Anniversary Jojo!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .page {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        #page1 {
+            display: flex;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+        
+        #page2 {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+        
+        #page3 {
+            background: linear-gradient(135deg, #ff6b8b 0%, #ff8e8e 100%);
+        }
+        
+        #page4 {
+            background: linear-gradient(135deg, #ff0a54 0%, #ff477e 100%);
+        }
+        
+        .panda {
+            font-size: 150px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #d81b60;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin: 0 0 30px 0;
+            padding: 0 15px;
+            max-width: 90%;
+        }
+        
+        .btn {
+            padding: 16px 35px;
+            font-size: 1.3rem;
+            background: linear-gradient(to right, #ff4081, #f50057);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            z-index: 20;
+            min-width: 250px;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(25deg);
+            transition: all 0.4s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .btn:hover::after {
+            left: 120%;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .love-popup {
+            font-size: 2.8rem;
+            color: #d81b60;
+            margin-bottom: 30px;
+            animation: pulse 1.5s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            z-index: 10;
+            font-weight: bold;
+            background: rgba(255,255,255,0.3);
+            padding: 15px 30px;
+            border-radius: 15px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .dates {
+            background-color: rgba(255,255,255,0.85);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            max-width: 90%;
+            z-index: 10;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+        }
+        
+        .paragraph {
+            background-color: rgba(255,255,255,0.85);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            max-width: 90%;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            z-index: 10;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        
+        .question {
+            font-size: 2.2rem;
+            color: #d81b60;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            z-index: 10;
+            font-weight: bold;
+            padding: 0 15px;
+            max-width: 90%;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+            z-index: 10;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 28px;
+            color: #ff4081;
+            animation: floatHeart 6s linear infinite;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .pop {
+            animation: pop 0.5s;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 32px;
+            animation: float 10s linear infinite;
+            z-index: 2;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .proposal {
+            position: relative;
+            background: linear-gradient(to bottom right, #ffffff, #f8f8f8);
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 90%;
+            margin: 20px 0;
+            animation: pop 1s;
+            z-index: 15;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: left;
+            border: 3px solid #ffd1dc;
+        }
+        
+        .proposal h2 {
+            color: #d81b60;
+            margin: 0 0 20px 0;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        
+        .ring-emoji {
+            font-size: 4rem;
+            animation: bounce 2s infinite;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .progress-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 20;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background-color: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .love-popup {
+                font-size: 2rem;
+                padding: 12px 20px;
+            }
+            
+            .question {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 14px 25px;
+                font-size: 1.2rem;
+                min-width: 220px;
+            }
+            
+            .panda {
+                font-size: 120px;
+            }
+            
+            .paragraph, .dates {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .love-popup {
+                font-size: 1.6rem;
+                padding: 10px 15px;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 1.1rem;
+                min-width: 200px;
+            }
+            
+            .panda {
+                font-size: 100px;
+            }
+            
+            .paragraph, .dates {
+                padding: 15px;
+                font-size: 1rem;
+            }
+            
+            .proposal {
+                padding: 25px;
+            }
+            
+            .proposal h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #d81b60;
+        }
+        
+        .final-message {
+            font-size: 2rem;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            padding: 15px 30px;
+            border-radius: 15px;
+            background: rgba(216, 27, 96, 0.3);
+        }
+        
+        .deployment-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 300px;
+            text-align: left;
+        }
+        
+        .deployment-info h3 {
+            margin-bottom: 8px;
+            color: #d81b60;
+        }
+        
+        .deployment-info ul {
+            padding-left: 20px;
+        }
+        
+        .deployment-info li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1 -->
+        <div class="page" id="page1">
+            <div class="panda">🐼</div>
+            <h1>Happy 1st Talk Anniversary Jojo!</h1>
+            <button class="btn" id="jojoBtn">Click Here Jojo!</button>
+        </div>
+        
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <div class="love-popup">I LOVE YOU JOJO! ❤️</div>
+            <div class="dates">
+                <p>Our first talk: June 6, 2024</p>
+                <p>First "I love you": June 30, 2024</p>
+            </div>
+            <div class="paragraph">
+                <p>My dearest Jojo,</p>
+                <p>One year ago, our beautiful journey began with that first conversation. Little did we know that talk would blossom into this incredible love we share. Every moment with you, even across the distance, has been magical. Your voice, your laughter, your love - they've become my favorite things in this world.</p>
+                <p>Thank you for choosing me, for loving me, and for making every day special. Here's to many more anniversaries together!</p>
+                <p class="signature">Forever yours,<br>Kishan</p>
+            </div>
+            <button class="btn" id="mommyBtn">Press Me Mommy!</button>
+        </div>
+        
+        <!-- Page 3 -->
+        <div class="page" id="page3">
+            <div class="question">Do you love me Jojo?</div>
+            <div class="options">
+                <button class="btn option-btn" id="loveBtn">I LOVE YOU TOO! ❤️</button>
+                <button class="btn option-btn" id="daddyBtn">YES DADDY! 😘</button>
+            </div>
+        </div>
+        
+        <!-- Page 4 - Proposal -->
+        <div class="page" id="page4">
+            <div class="proposal">
+                <div class="ring-emoji">💍</div>
+                <h2>My Sweet Jojo,</h2>
+                <p>From our first talk to our first "I love you," every moment with you has been a dream come true. This long distance has only proven how strong our love is, and now I can't imagine my life without you.</p>
+                <p>Will you make me the happiest man alive and become my wife? I promise to love you, cherish you, and make you smile every day for the rest of our lives.</p>
+                <p class="signature">With all my heart,<br>Kishan</p>
+            </div>
+            <div class="final-message">I LOVE YOU JOJO!</div>
+        </div>
+        
+        <!-- Progress dots -->
+        <div class="progress-dots">
+            <div class="dot active" data-page="1"></div>
+            <div class="dot" data-page="2"></div>
+            <div class="dot" data-page="3"></div>
+            <div class="dot" data-page="4"></div>
+        </div>
+    </div>
+
+    <div class="deployment-info">
+        <h3><i class="fas fa-cloud-upload-alt"></i> Deployment Ready</h3>
+        <p>This website is fully self-contained. To deploy:</p>
+        <ul>
+            <li>1. Save this file as <code>anniversary.html</code></li>
+            <li>2. Upload to any web hosting service</li>
+            <li>3. Or open directly in a browser</li>
+        </ul>
+    </div>
+
+    <script>
+        // Track current page for cleanup
+        let currentPage = 1;
+        
+        // Create floating elements
+        function createFloatingElements(pageId, count, type) {
+            const page = document.getElementById(pageId);
+            const symbols = type === 'heart' ? 
+                ['❤️', '💖', '💗', '💓', '💞', '💕', '💘', '💝'] : 
+                ['🌸', '🌹', '🌺', '🌻', '🌷', '💐', '🌼', '🏵️'];
+            
+            for (let i = 0; i < count; i++) {
+                const element = document.createElement('div');
+                element.className = type;
+                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                element.style.animationDelay = Math.random() * 3 + 's';
+                element.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                element.style.opacity = Math.random() * 0.7 + 0.3;
+                page.appendChild(element);
+            }
+        }
+        
+        // Create popping hearts effect
+        function createPoppingHearts() {
+            const interval = setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                heart.style.animation = 'pop 0.5s';
+                heart.style.zIndex = '5';
+                document.getElementById('page4').appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 500);
+            }, 300);
+            
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 5000);
+        }
+        
+        // Clean up floating elements from a page
+        function cleanupFloatingElements(pageId) {
+            const page = document.getElementById(pageId);
+            if (!page) return;
+            
+            const hearts = page.querySelectorAll('.heart');
+            const flowers = page.querySelectorAll('.flower');
+            
+            hearts.forEach(el => el.remove());
+            flowers.forEach(el => el.remove());
+        }
+        
+        // Change page function
+        function goToPage(pageNumber) {
+            // Clean up previous page
+            cleanupFloatingElements(`page${currentPage}`);
+            
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the selected page
+            const nextPage = document.getElementById(`page${pageNumber}`);
+            nextPage.style.display = 'flex';
+            
+            // Update progress dots
+            document.querySelectorAll('.dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            document.querySelector(`.dot[data-page="${pageNumber}"]`).classList.add('active');
+            
+            // Add animations and elements based on page
+            switch(pageNumber) {
+                case 1:
+                    createFloatingElements('page1', 15, 'heart');
+                    break;
+                case 2:
+                    createFloatingElements('page2', 20, 'heart');
+                    break;
+                case 3:
+                    createFloatingElements('page3', 20, 'heart');
+                    break;
+                case 4:
+                    createFloatingElements('page4', 15, 'heart');
+                    createFloatingElements('page4', 10, 'flower');
+                    createPoppingHearts();
+                    break;
+            }
+            
+            // Update current page
+            currentPage = pageNumber;
+        }
+        
+        // Button event listeners
+        document.getElementById('jojoBtn').addEventListener('click', () => goToPage(2));
+        document.getElementById('mommyBtn').addEventListener('click', () => goToPage(3));
+        document.getElementById('loveBtn').addEventListener('click', () => goToPage(4));
+        document.getElementById('daddyBtn').addEventListener('click', () => goToPage(4));
+        
+        // Progress dots event listeners
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                const page = dot.getAttribute('data-page');
+                goToPage(parseInt(page));
+            });
+        });
+        
+        // Initialize
+        window.onload = function() {
+            goToPage(1);
+        };
+    </script>
+</body>
+</html>
